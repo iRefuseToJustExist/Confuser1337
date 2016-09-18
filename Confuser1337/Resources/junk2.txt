@@ -1,0 +1,4 @@
+public void %void%(){
+//junk
+//_rand
+}

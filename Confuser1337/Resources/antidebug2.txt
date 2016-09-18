@@ -1,0 +1,4 @@
+System.Timers.Timer %timer% = new System.Timers.Timer();
+    %timer%.Elapsed+=new ElapsedEventHandler(%DEBUGCLASS%.%timer2%);
+    %timer%.Interval=2500;
+    %timer%.Enabled=true;

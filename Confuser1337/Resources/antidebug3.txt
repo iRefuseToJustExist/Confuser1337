@@ -1,0 +1,12 @@
+public class %DEBUGCLASS%{
+	public static void %timer2%(object source, ElapsedEventArgs e)
+ {
+     try{
+	 if (Debugger.IsAttached || Debugger.IsLogging())
+            {
+			Environment.Exit(0);
+            }
+	}catch{
+	}
+ }
+ }
