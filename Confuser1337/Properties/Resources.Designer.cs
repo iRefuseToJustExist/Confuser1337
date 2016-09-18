@@ -61,16 +61,6 @@ namespace Confuser1337.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] adobe {
-            get {
-                object obj = ResourceManager.GetObject("adobe", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to System.Timers.Timer %timer% = new System.Timers.Timer();
         ///    %timer%.Elapsed+=new ElapsedEventHandler(%DEBUGCLASS%.%timer2%);
         ///    %timer%.Interval=2500;
@@ -138,16 +128,6 @@ namespace Confuser1337.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] chrome {
-            get {
-                object obj = ResourceManager.GetObject("chrome", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.IO;
         ///using System.Linq;
@@ -208,9 +188,9 @@ namespace Confuser1337.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to public void %void%{
+        ///   Looks up a localized string similar to public void %void%(){
         /////junk
-        ///
+        /////_rand
         ///}.
         /// </summary>
         internal static string junk2 {
@@ -235,36 +215,6 @@ namespace Confuser1337.Properties {
         internal static byte[] mbam {
             get {
                 object obj = ResourceManager.GetObject("mbam", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] obs {
-            get {
-                object obj = ResourceManager.GetObject("obs", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Skype {
-            get {
-                object obj = ResourceManager.GetObject("Skype", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] steam {
-            get {
-                object obj = ResourceManager.GetObject("steam", resourceCulture);
                 return ((byte[])(obj));
             }
         }

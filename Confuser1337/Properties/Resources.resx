@@ -133,21 +133,6 @@
   <data name="vnc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vnc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="adobe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\adobe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\chrome;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="obs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\obs;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Skype" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Skype;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="steam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\steam;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="dastub" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dastub.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
